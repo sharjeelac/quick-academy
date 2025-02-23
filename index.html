@@ -3,45 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Academy - Delta Web Development</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Quick English & Computer Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --dark-gray: #1f2937;
-            --light-gray: #f3f4f6;
+            --primary: #2F3C7E;
+            --secondary: #FBEAEB;
+            --accent: #FF6B6B;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            line-height: 1.6;
-            color: var(--dark-gray);
+            background-color: #f9f9f9;
         }
 
-        .navbar {
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #1E2761);
             padding: 1rem 5%;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-color);
         }
 
         .nav-links {
@@ -50,207 +56,239 @@
         }
 
         .nav-links a {
+            color: white;
             text-decoration: none;
-            color: var(--dark-gray);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
+            color: var(--accent);
         }
 
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            height: 100vh;
+            background: linear-gradient(rgba(47, 60, 126, 0.8), rgba(31, 39, 97, 0.8)),
+                        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
             color: white;
-            padding: 8rem 5% 4rem;
-            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 600px;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .cta-button {
-            display: inline-block;
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
             padding: 1rem 2rem;
-            background: white;
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 50px;
-            margin-top: 2rem;
-            font-weight: 600;
-            transition: transform 0.3s;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .cta-button:hover {
+        .cta-btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
         }
 
-        .logos-section {
-            padding: 3rem 5%;
-            background: var(--light-gray);
-            text-align: center;
-        }
-
-        .logos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .course-details {
-            padding: 4rem 5%;
+        /* Courses Section */
+        .courses {
+            padding: 5rem 5%;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            font-size: 2rem;
-            color: var(--dark-gray);
         }
 
-        .features-grid {
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--secondary);
+            padding: 5rem 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
         .feature-card {
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .instructor-section {
-            padding: 4rem 5%;
-            background: var(--light-gray);
             text-align: center;
-        }
-
-        .instructor-card {
-            max-width: 600px;
-            margin: 2rem auto;
             padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .faq-section {
-            padding: 4rem 5%;
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--primary), #1E2761);
+            color: white;
         }
 
-        .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
             padding: 1rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
         }
 
         footer {
-            background: var(--dark-gray);
+            background: #1a1a1a;
             color: white;
-            padding: 4rem 5%;
-            margin-top: 4rem;
+            padding: 3rem 5%;
+            text-align: center;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            animation: fadeIn 1s ease-out;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Quick Academy</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#curriculum">Curriculum</a>
-            <a href="#instructor">Instructor</a>
-            <a href="#faq">FAQ</a>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <div class="logo">Quick Academy</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#courses">Courses</a>
+                <a href="#features">Features</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
     <section class="hero" id="home">
-        <h1>Become a Full Stack Developer in 6 Months</h1>
-        <p>Join Web Dev 1st Batch - Starts 1st March 2025</p>
-        <a href="#enroll" class="cta-button">Contact Now</a>
-    </section>
-
-    <!-- <section class="logos-section">
-        <h2>Our Alumni Work At</h2>
-        <div class="logos-grid"> -->
-            <!-- Add company logos here -->
-        <!-- </div>
-    </section> -->
-
-    <section class="course-details" id="curriculum">
-        <h2 class="section-title">Course Curriculum</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Frontend Development</h3>
-                <p>Master HTML, CSS, JavaScript & modern frameworks</p>
-            </div>
-            <div class="feature-card">
-                <h3>Backend Development</h3>
-                <p>Node.js, Express.js, REST APIs & Authentication</p>
-            </div>
-            <div class="feature-card">
-                <h3>Database Management</h3>
-                <p>SQL & MongoDB for complete data solutions</p>
-            </div>
+        <div class="hero-content reveal">
+            <h1>Transform Your Career with Professional Skills</h1>
+            <p>Master English and Computer skills with industry experts. Free admission available!</p>
+            <button class="cta-btn">Contact : +92 319 0094706</button>
         </div>
     </section>
 
-    <section class="instructor-section" id="instructor">
-        <h2 class="section-title">Your Instructor</h2>
-        <div class="instructor-card">
-            <h3>Sharjeel Khalid</h3>
-            <p>Instructor at Quick Academy</p>
-            <p>Senior Developer | 3+ Years Experience</p>
+    <section class="courses" id="courses">
+        <h2 class="section-title reveal">Our Courses</h2>
+        <div class="courses-grid">
+            <!-- English Courses -->
+            <div class="course-card reveal">
+                <i class="fas fa-language course-icon"></i>
+                <h3>English Mastery</h3>
+                <p>Comprehensive English courses covering grammar, writing, and communication skills.</p>
+            </div>
+            
+            <!-- Computer Courses -->
+            <div class="course-card reveal">
+                <i class="fas fa-laptop-code course-icon"></i>
+                <h3>Computer Science</h3>
+                <p>From basic computer literacy to advanced programming and web development.</p>
+            </div>
+
+            <!-- More course cards... -->
         </div>
     </section>
 
-    <section class="faq-section" id="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <h3>Who is this course for?</h3>
-            <p>Complete beginners to programming as well as experienced developers looking to upskill.</p>
+    <section class="features" id="features">
+        <div class="feature-card reveal">
+            <i class="fas fa-user-graduate fa-3x"></i>
+            <h3>Free Admission</h3>
+            <p>Start your learning journey without any upfront costs</p>
         </div>
-        <!-- Add more FAQ items -->
+        <!-- More feature cards... -->
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <p><i class="fas fa-phone"></i> 0319-0094706</p>
+                <p><i class="fas fa-phone"></i> 0314-9058679</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea rows="5" placeholder="Message"></textarea>
+                <button class="cta-btn">Send Message</button>
+            </form>
+        </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <p>Contact: delta@quickacademy.in</p>
-            <p>© 2024 Quick Academy. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
+        <p>&copy; 2025 Quick English & Computer Academy</p>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
-
-        // Smooth scroll
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -258,6 +296,32 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Reveal animations on scroll
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for(let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveals[i].getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if(revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will contact you soon.');
+            this.reset();
         });
     </script>
 </body>
