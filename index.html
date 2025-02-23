@@ -1,328 +1,829 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quick English & Computer Academy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+      /* Reset & Base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        background: #f8f9fa;
+        color: #333;
+        transition: background 0.3s, color 0.3s;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* Dark Mode */
+      body.dark-mode {
+        background: #121212;
+        color: #ddd;
+      }
+      body.dark-mode header,
+      body.dark-mode footer {
+        background: #1f1f1f;
+      }
+      body.dark-mode .course-card,
+      body.dark-mode .feature,
+      body.dark-mode .testimonial,
+      body.dark-mode .success-story {
+        background: #1f1f1f;
+      }
+
+      /* Container */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      /* Header & Navigation */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(45deg, #004080, #0059b3);
+        color: #fff;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+      }
+      nav .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+      nav ul {
+        display: flex;
+      }
+      nav ul li {
+        margin-left: 20px;
+      }
+      nav ul li a {
+        color: #fff;
+        font-weight: 500;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background 0.3s;
+      }
+      nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://slidechef.net/wp-content/uploads/2021/07/education-background-design-google-slide.jpg")
+            no-repeat center/cover;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+      .btn {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff8c00, #ffcc00);
+        color: #333;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Sections */
+      section {
+        padding: 100px 0;
+      }
+      section h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+        color: #004080;
+      }
+
+      /* About Section */
+      #about .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+      #about .about-content img {
+        width: 400px;
+        max-width: 90%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      #about .about-content .text {
+        max-width: 600px;
+      }
+
+      /* Courses Section */
+      #courses .courses-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .course-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .course-card i {
+        font-size: 3rem;
+        color: #ff8c00;
+        margin-bottom: 15px;
+      }
+      .course-card h3 {
+        margin-bottom: 15px;
+        color: #004080;
+      }
+      .course-card p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Features Section */
+      #features .features-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .feature {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1 1 280px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .feature i {
+        font-size: 2.5rem;
+        color: #ff8c00;
+        margin-bottom: 10px;
+      }
+      .feature h4 {
+        margin-bottom: 10px;
+        color: #004080;
+      }
+      .feature p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Testimonials Section */
+      #testimonials .testimonial-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .testimonial {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .testimonial:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .testimonial img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+      .testimonial p {
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .testimonial h5 {
+        color: #004080;
+      }
+
+      /* Timetable Section */
+      #timetable table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+      #timetable th,
+      #timetable td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+      #timetable th {
+        background: #004080;
+        color: #fff;
+      }
+
+      /* Gallery Section */
+      #gallery .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+      }
+      #gallery .gallery-grid img {
+        width: 100%;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+      #gallery .gallery-grid img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Map Section */
+      #map iframe {
+        width: 100%;
+        height: 400px;
+        border: 0;
+        border-radius: 10px;
+      }
+
+      /* Success Stories Section */
+      #success .success-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .success-story {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .success-story:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .success-story img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .success-story h5 {
+        color: #004080;
+        margin-bottom: 10px;
+      }
+
+      /* Contact Section */
+      #contact form {
+        width: 90%;
+        max-width: 600px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      #contact input,
+      #contact textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+      #contact button {
+        padding: 15px;
+        background: #004080;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      #contact button:hover {
+        background: #003366;
+      }
+      #contact .phone {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1.1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(45deg, #004080, #0059b3);
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+      }
+      footer .social-links {
+        margin: 10px 0;
+      }
+      footer .social-links a {
+        margin: 0 10px;
+        font-size: 1.5rem;
+        color: #fff;
+        transition: color 0.3s;
+      }
+      footer .social-links a:hover {
+        color: #ffcc00;
+      }
+      footer .dark-mode-toggle {
+        margin-top: 10px;
+        cursor: pointer;
+        border: 1px solid #fff;
+        padding: 5px 10px;
+        border-radius: 20px;
+        display: inline-block;
+        transition: background 0.3s, color 0.3s;
+      }
+      footer .dark-mode-toggle:hover {
+        background: #fff;
+        color: #004080;
+      }
+
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Navigation */
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          background: linear-gradient(45deg, #004080, #0059b3);
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 200px;
+          display: none;
         }
-
-        :root {
-            --primary: #2F3C7E;
-            --secondary: #FBEAEB;
-            --accent: #FF6B6B;
+        nav ul.active {
+          display: flex;
         }
-
-        html {
-            scroll-behavior: smooth;
+        nav ul li {
+          margin: 15px 0;
+          text-align: center;
         }
-
-        body {
-            background-color: #f9f9f9;
+        .menu-toggle {
+          display: block;
         }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), #1E2761);
-            padding: 1rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        .about-content {
+          flex-direction: column;
         }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(47, 60, 126, 0.8), rgba(31, 39, 97, 0.8)),
-                        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') center/cover;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            color: white;
-            margin-top: 60px;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-btn {
-            padding: 1rem 2rem;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
-        }
-
-        /* Courses Section */
-        .courses {
-            padding: 5rem 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .course-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .course-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        /* Features Section */
-        .features {
-            background: var(--secondary);
-            padding: 5rem 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, var(--primary), #1E2761);
-            color: white;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 5px;
-        }
-
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            animation: fadeIn 1s ease-out;
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
     <header>
+      <div class="container">
         <nav>
-            <div class="logo">Quick Academy</div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#courses">Courses</a>
-                <a href="#features">Features</a>
-                <a href="#contact">Contact</a>
-            </div>
+          <div class="logo">Quick Academy</div>
+          <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+          <ul id="nav-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#timetable">Timetable</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#map">Map</a></li>
+            <li><a href="#success">Success</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </nav>
+      </div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="hero-content reveal">
-            <h1>Transform Your Career with Professional Skills</h1>
-            <p>Master English and Computer skills with industry experts. Free admission available!</p>
-            <button class="cta-btn">Contact : +92 319 0094706</button>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero reveal" id="hero">
+      <div>
+        <h1>Welcome to Quick English & Computer Academy</h1>
+        <p>Learn great skills for a better career. Free admission!</p>
+        <button
+          class="btn"
+          onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});"
+        >
+          Join Now
+        </button>
+      </div>
     </section>
 
-    <section class="courses" id="courses">
-        <h2 class="section-title reveal">Our Courses</h2>
-        <div class="courses-grid">
-            <!-- English Courses -->
-            <div class="course-card reveal">
-                <i class="fas fa-language course-icon"></i>
-                <h3>English Mastery</h3>
-                <p>Comprehensive English courses covering grammar, writing, and communication skills.</p>
-            </div>
-            
-            <!-- Computer Courses -->
-            <div class="course-card reveal">
-                <i class="fas fa-laptop-code course-icon"></i>
-                <h3>Computer Science</h3>
-                <p>From basic computer literacy to advanced programming and web development.</p>
-            </div>
-
-            <!-- More course cards... -->
+    <!-- About Section -->
+    <section id="about" class="reveal">
+      <div class="container about-content">
+        <div class="text">
+          <h2>About Us</h2>
+          <p>
+            At Quick English & Computer Academy, our mission is to empower
+            students with skills that matter. We offer comprehensive training in
+            English, computer courses, graphic design, accounting, and more. Our
+            expert instructors and hands-on approach ensure you’re ready for
+            today’s competitive job market.
+          </p>
         </div>
+        <img
+          src="https://images.unsplash.com/photo-1509062522246-3755977927d7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D"
+          alt="About Us"
+        />
+      </div>
     </section>
 
-    <section class="features" id="features">
-        <div class="feature-card reveal">
-            <i class="fas fa-user-graduate fa-3x"></i>
-            <h3>Free Admission</h3>
-            <p>Start your learning journey without any upfront costs</p>
+    <!-- Courses Section -->
+    <section id="courses" class="reveal">
+      <div class="container">
+        <h2>Our Courses</h2>
+        <div class="courses-container">
+          <div class="course-card">
+            <i class="fas fa-code"></i>
+            <h3>Web Development</h3>
+            <p>
+              Learn the latest web technologies and build modern, responsive
+              websites.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-language"></i>
+            <h3>English Language</h3>
+            <p>
+              Enhance your language skills with comprehensive lessons in grammar
+              and vocabulary.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-comments"></i>
+            <h3>Spoken English</h3>
+            <p>
+              Improve your speaking abilities with interactive sessions and
+              real-world practice.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-user-friends"></i>
+            <h3>Communication Skills</h3>
+            <p>
+              Develop effective communication for both personal and professional
+              success.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-desktop"></i>
+            <h3>Computer Courses</h3>
+            <p>
+              Master various computer skills with our expert-led training
+              sessions.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-calculator"></i>
+            <h3>Accounting</h3>
+            <p>
+              Learn the fundamentals of accounting and financial management.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-paint-brush"></i>
+            <h3>Graphic Design</h3>
+            <p>
+              Unleash your creativity with courses in design principles and
+              software tools.
+            </p>
+          </div>
+          <div class="course-card">
+            <i class="fas fa-file-excel"></i>
+            <h3>MS Office</h3>
+            <p>
+              Gain expertise in the complete MS Office suite from basic to
+              advanced levels.
+            </p>
+          </div>
         </div>
-        <!-- More feature cards... -->
+      </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2>Contact Us</h2>
-                <p><i class="fas fa-phone"></i> 0319-0094706</p>
-                <p><i class="fas fa-phone"></i> 0314-9058679</p>
-            </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <textarea rows="5" placeholder="Message"></textarea>
-                <button class="cta-btn">Send Message</button>
-            </form>
+    <!-- Features Section -->
+    <!-- <section id="features" class="reveal">
+    <div class="container features-container">
+      <div class="feature">
+        <i class="fas fa-check-circle"></i>
+        <h4>Fixed Header</h4>
+        <p>Easy navigation with a fixed header that stays on top.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-mobile-alt"></i>
+        <h4>Responsive Design</h4>
+        <p>Optimized for all screen sizes, from mobiles to desktops.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-rocket"></i>
+        <h4>Modern UI</h4>
+        <p>Sleek gradients, box shadows, and smooth transitions for a professional look.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-users"></i>
+        <h4>Interactive Elements</h4>
+        <p>Engaging hover effects and scroll animations to enhance user experience.</p>
+      </div>
+    </div>
+  </section> -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="reveal">
+      <div class="container">
+        <h2>What Our Students Say</h2>
+        <div class="testimonial-container">
+          <div class="testimonial">
+            <img
+              src="https://scontent.fisb4-2.fna.fbcdn.net/v/t39.30808-6/469218423_498746679849445_6791235769418783434_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGmDIACG9wATWGTumFhMgMOYVcfanIheC1hVx9qciF4LdKbxr83nqH1UNWixwAGaZI7gU4zuXCe14Au39aMZecf&_nc_ohc=pYxPO_e7LsIQ7kNvgGKtfgF&_nc_oc=AdjoKA6Uysct3UarAseEszoOuMyj8QgEnJ_XcmjMs9JUR5yVwbT5G6GKaUGeB4kT_jusSHtUFQ80cShq3pcqSpcV&_nc_zt=23&_nc_ht=scontent.fisb4-2.fna&_nc_gid=AqZmFqKzR_mDad51C1hI1Pc&oh=00_AYBYPyCyCJJ9XZdDsAb-2wf5J_1RhJRJBXpZY8Q5cyHjsQ&oe=67C0F33B"
+              alt="Student"
+            />
+            <p>
+              "The courses are well-structured and the instructors are very
+              supportive!"
+            </p>
+            <h5>Bakht Sardar</h5>
+          </div>
+          <div class="testimonial">
+            <img
+              src="https://scontent.fisb4-2.fna.fbcdn.net/v/t39.30808-6/454429474_1150897619352213_6371357861344169299_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeENjNgdZXjYodLAmOSgk_j0hxENSKYVPUyHEQ1IphU9TCQxkje5eU7Bq-Co9aTjTZPUA7r_36lYuTPswIqaJhSY&_nc_ohc=s7smmsZerxYQ7kNvgHmbZVG&_nc_oc=Adj37VeKtiuocyAW-HxgTY5M72VUru_EOoaXmknbfVH6IfgBG5s0EOYNadL7gREyV9Ddo4TjQqFKLPfOhlnbAkIp&_nc_zt=23&_nc_ht=scontent.fisb4-2.fna&_nc_gid=A5gZDX6x1PXZlLwlVI3Euvg&oh=00_AYDu7Pf4hn9l4DThhSUl6QejzvjfnJvLWXKUqsL4QUpfHA&oe=67C11AF3"
+              alt="Student"
+            />
+            <p>
+              "I improved my English and computer skills significantly in just a
+              few months."
+            </p>
+            <h5>Bakht Sardar</h5>
+          </div>
+          <div class="testimonial">
+            <img
+              src="https://scontent.fisb4-2.fna.fbcdn.net/v/t1.6435-1/165892076_779694335994894_8285355966276672611_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeGGxCOcrqdZFx5WhAYJschoBr8g-3W3mOkGvyD7dbeY6TkLxAHZp-Lp-THq483QVa5MZxPOt-kOTJbch6om_HdK&_nc_ohc=FG301TLgtBkQ7kNvgHa98ev&_nc_oc=AdgLcOHbt9oFa70yTWUgZAZuMRm9MmsLQIxEr_t2mqxIpVDC0fYilEGDIj-EkBYUUdTa0-8DnSOl5mqHcaGehR8w&_nc_zt=24&_nc_ht=scontent.fisb4-2.fna&_nc_gid=AZ-tktmeveoMcthi5Yi6PaQ&oh=00_AYD-gtg85XlubTYzVTshHFWezieZFjEapluLiicHttVISQ&oe=67E2B2AD"
+              alt="Student"
+            />
+            <p>
+              "The interactive timetable and detailed course information made
+              planning my study schedule so easy."
+            </p>
+            <h5>Sunny Khan </h5>
+          </div>
         </div>
+      </div>
     </section>
 
+    <!-- Timetable Section -->
+    <section id="timetable" class="reveal">
+      <div class="container">
+        <h2>Course Timetable</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Time</th>
+              <th>Course</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Monday - Saturday</td>
+              <td>12:00 AM - 06:00 PM</td>
+              <td>All Courses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="reveal">
+      <div class="container">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+          <img
+            src="https://scontent.fisb4-1.fna.fbcdn.net/v/t39.30808-6/469940968_560914713367459_2332756400625093166_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeELHpdJWQ4xM818n6SWk44Ue0BVpZJC9Dh7QFWlkkL0ODsYuN8zlUTeDzvc_zgtMu-L5pF2sJqwxA_V_wj6-pLD&_nc_ohc=Eo13a_Zcym0Q7kNvgHPc7gi&_nc_oc=Adh5f6N6Q_3UeSNHcQCPhqzcDhQ9ey5UsCGJ4ZmSLjPwS_T5qTEpQcObhtonT0sUeuskq2d1VeL35V_OxYOl_Cch&_nc_zt=23&_nc_ht=scontent.fisb4-1.fna&_nc_gid=ALbLfE1FzhKrkjh1CO3ehTx&oh=00_AYAsf9BixUNpnVLTXKGMb20Fc5ba6yO5jr06jULjRbWT-w&oe=67C0F4D5"
+            alt="Gallery Image"
+          />
+          <img
+            src="https://scontent.fisb4-2.fna.fbcdn.net/v/t39.30808-6/469966637_560936046698659_5854785691190891389_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEJFD9yysK8haTs83KK7LJu4w-Ke5cISfbjD4p7lwhJ9hu35svHUleaK9XPjcnRZ92Hf5Wg9whPORs6vHZEDBh2&_nc_ohc=8sr-TdSrpMAQ7kNvgG-Ae6C&_nc_oc=AdhmfhC68VkaAS3FNSUgHTtV_1jsK5vS8yk1EopLHlf5aSmHwTSLtDXQnNR_qkTpzeUNJhQcxD0R8t0TdNRsKzSV&_nc_zt=23&_nc_ht=scontent.fisb4-2.fna&_nc_gid=AViSGX_XJmBDqTKlRXQ0Dzl&oh=00_AYBe3xElWqTAUDxUsjMTEkZuuLhlVlOe1ay4f7etbFJlcw&oe=67C11421"
+            alt="Gallery Image"
+          />
+          <img
+            src="https://scontent.fisb4-1.fna.fbcdn.net/v/t39.30808-6/469245689_557459183713012_8391141925240544897_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG2Qr3FVFCmctAaOWgAQv10ihXQj7irxByKFdCPuKvEHNsIiaoGXaNE-D8gWJJrw4X8t0krJ8GiqmjihAObfanF&_nc_ohc=xIvKwoNTdScQ7kNvgFVWL-I&_nc_oc=AdjH8KR8drdIvk_5HczM9ZQrhr6Kt1sU7hV0g5u0V45l4EWnQTL_cmzXBGBxoyByRboZQPBGd_kGGErYiORX6Lbd&_nc_zt=23&_nc_ht=scontent.fisb4-1.fna&_nc_gid=AxJzorv25MzWMH2hbkwUfL8&oh=00_AYB4uXkUa8R8DujDah_PG3QEdiwbTbNJgJAy2MA_Go-AVw&oe=67C10149"
+          />
+          <img
+            src="https://scontent.fisb4-2.fna.fbcdn.net/v/t39.30808-6/468821928_555552773903653_1454513406233790261_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH7x2SH-F4XxG9aXdFegR8iCl6XX2DAw0oKXpdfYMDDSn8SsFYUN1pJHxMT2qAODS4TrkwJNey0xj1eIz3y26Sy&_nc_ohc=MS_w5PRmSFQQ7kNvgFojHaA&_nc_oc=AdjiDUtdZImaXfLaRf0Y5s2dpeEog9vX8D1VJpBDM-ncZnSbE45D4WfS_D643bcJIkZeuRjaSaTFnBo4NcIlDhDR&_nc_zt=23&_nc_ht=scontent.fisb4-2.fna&_nc_gid=A9mdIUhn9xGBt7QGivxXHIj&oh=00_AYCr0raU1CS7K3DxFEJZmizWVlZnrXBW2Klu8fkE7p0Kyg&oe=67C0FE5E"
+            alt="Gallery Image"
+          />
+          <img
+            src="https://scontent.fisb4-2.fna.fbcdn.net/v/t39.30808-6/469052862_555546923904238_9180600493473143489_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEk91SzjUzyBXjYHWTX2wSFE2ma_rgmh2MTaZr-uCaHY0OwGM2dFqB8GX15gezDnbtIl2X4P_-IHtB7cPjCu1kt&_nc_ohc=cibTMC-61NoQ7kNvgH20QNo&_nc_oc=Adj7TOEZCcnEjpH8ysWe9fDQokZHD71GwCpv-s_Yj13apqTibTuldiCHzICMlI2z4VEkA2pjshUIXVotmS4sLkGj&_nc_zt=23&_nc_ht=scontent.fisb4-2.fna&_nc_gid=Am6qQY-Q-PP-BTSRbi5LGdc&oh=00_AYCzstsmQZA8lb72jMmDxfZ2_ZrRqrcRnDWvv3PG8ACN1w&oe=67C104CD"
+            alt="Gallery Image"
+          />
+          <img
+            src="https://scontent.fisb4-2.fna.fbcdn.net/v/t39.30808-6/469027771_555544543904476_647333479540987721_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEzZ_OGT399fvW6HlGa37LG7z-pSYdW-l_vP6lJh1b6X-DCy2KXIvshA54q4ouvZVclpYYt0gwMVhCCvdlF7ju_&_nc_ohc=g68U08UWQjkQ7kNvgEU7ULt&_nc_oc=AdhQUiNlk8g85H0oCtAVULxVOxIEFy2kuOWhZK3b-nl00efFwnEnVQ8QdTqZBjht_9YaaGR27uosLOFIwpvUQhaH&_nc_zt=23&_nc_ht=scontent.fisb4-2.fna&_nc_gid=AvxhhB694fAXX4yFxnq5qlb&oh=00_AYDBd1eQg2lOM_jV0GlrAKR333GeqXEFdRUQTJ6SZX4sPg&oe=67C1210E"
+            alt="Gallery Image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="reveal">
+      <div class="container">
+        <h2>Our Location</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!2m12!1m3!1d3151.835434509374!2d144.9537353153163!3d-37.81627997975167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577c6b50f7!2sMelbourne!5e0!3m2!1sen!2sau!4v1614715533836!5m2!1sen!2sau"
+          allowfullscreen=""
+          loading="mardan"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success" class="reveal">
+      <div class="container">
+        <h2>Student Success Stories</h2>
+        <div class="success-container">
+          <div class="success-story">
+            <img
+              src="https://source.unsplash.com/collection/190727/406x300"
+              alt="Success Story"
+            />
+            <h5>Asad Ahmed</h5>
+            <p>
+              "After completing the Web Development course, I landed my dream
+              job in tech!"
+            </p>
+          </div>
+          <div class="success-story">
+            <img
+              src="https://source.unsplash.com/collection/190727/407x300"
+              alt="Success Story"
+            />
+            <h5>Samina Yousaf</h5>
+            <p>
+              "The English courses boosted my confidence and communication
+              skills dramatically."
+            </p>
+          </div>
+          <div class="success-story">
+            <img
+              src="https://source.unsplash.com/collection/190727/408x300"
+              alt="Success Story"
+            />
+            <h5>Ahmed Raza</h5>
+            <p>
+              "Thanks to the computer courses, I transitioned smoothly into a
+              career in IT."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p class="phone">Call us: 0319-0094706 | 0314-9058679</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
+      <div class="container">
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://web.facebook.com/profile.php?id=100083468057641" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <p>&copy; 2025 Quick English & Computer Academy</p>
+        <div class="dark-mode-toggle" id="dark-mode-toggle">Dark Mode</div>
+        <p>
+          &copy; 2025 Quick English & Computer Academy. All Rights Reserved.
+        </p>
+      </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+      // Mobile menu toggle
+      const mobileMenu = document.getElementById("mobile-menu");
+      const navList = document.getElementById("nav-list");
+      mobileMenu.addEventListener("click", () => {
+        navList.classList.toggle("active");
+      });
 
-        // Reveal animations on scroll
-        window.addEventListener('scroll', reveal);
-
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            for(let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveals[i].getBoundingClientRect().top;
-                const revealPoint = 150;
-
-                if(revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('active');
-                } else {
-                    reveals[i].classList.remove('active');
-                }
+      // Intersection Observer for scroll reveal animations
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target);
             }
-        }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
-            this.reset();
-        });
+      revealElements.forEach((el) => {
+        revealObserver.observe(el);
+      });
+
+      // Dark mode toggle functionality
+      const darkModeToggle = document.getElementById("dark-mode-toggle");
+      darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        darkModeToggle.textContent = document.body.classList.contains(
+          "dark-mode"
+        )
+          ? "Light Mode"
+          : "Dark Mode";
+      });
+
+      // Dummy contact form functionality
+      const contactForm = document.getElementById("contact-form");
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Thank you for your message!");
+        contactForm.reset();
+      });
     </script>
-</body>
+  </body>
 </html>
